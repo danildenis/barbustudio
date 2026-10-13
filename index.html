@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Barbus Studio — выпускные фотокниги в Перми</title>
+<meta name="description" content="Выпускные альбомы для детского сада, начальной и старшей школы в Перми. Посчитайте стоимость на класс, полистайте готовые альбомы и забронируйте дату съёмки.">
+<meta property="og:title" content="Barbus Studio — выпускные фотокниги в Перми">
+<meta property="og:description" content="Посчитайте альбом на весь класс и полистайте готовые фотокниги.">
+<meta property="og:image" content="img/home-13.jpg">
+<meta name="theme-color" content="#F5F0E8">
+<link rel="icon" href="img/logo-full.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=13">
+</head>
+<body>
+
+<header class="head" id="head">
+  <a class="brand" href="#top" aria-label="Barbus Studio — наверх">
+    <span class="brand-mark"><img src="img/logo-full.png" alt="" width="57" height="54"></span>
+    <span><b>Barbus Studio</b><small>выпускные альбомы · Пермь</small></span>
+  </a>
+  <nav class="nav" aria-label="Разделы">
+    <a href="#calc">Калькулятор</a>
+    <a href="#book">Полистать</a>
+    <a href="#prices">Альбомы</a>
+    <a href="#path">Как заказать</a>
+    <a href="#gallery">Фото</a>
+    <a href="#faq">Вопросы</a>
+  </nav>
+  <a class="head-phone" href="tel:+79655588508">+7 (965) 55-88-008</a>
+  <button class="btn btn-ink btn-sm" data-lead="Забронировать съёмку">Забронировать</button>
+</header>
+
+<main id="top">
+
+  <!-- ГЛАВНЫЙ ЭКРАН -->
+  <section class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">Детский сад · начальная · старшая школа</p>
+      <h1>Выпускной альбом, <em>который будут листать</em> всю жизнь</h1>
+      <p class="lead">Фотокнига — это страницы истории, перелистывая которые возвращаешься к самым важным моментам. Снимаем, верстаем и печатаем на настоящей фотобумаге — с 2014 года.</p>
+      <div class="hero-cta">
+        <a class="btn btn-ink" href="#calc">Посчитать на класс</a>
+        <button class="btn btn-line" data-lead="Забронировать съёмку">Забронировать съёмку</button>
+      </div>
+      <dl class="stats">
+        <div><dt>18 000+</dt><dd>выпускных альбомов</dd></div>
+        <div><dt>142 000+</dt><dd>фотографий выпускников</dd></div>
+        <div><dt>с 2014</dt><dd>года делаем фотокниги</dd></div>
+      </dl>
+    </div>
+    <figure class="hero-photo">
+      <img src="img/home-13.jpg" alt="Выпускницы бегут по цветущему школьному саду" fetchpriority="high">
+    </figure>
+  </section>
+
+  <!-- АКЦИИ -->
+  <section class="promos" aria-label="Акции">
+    <article class="promo promo-coral">
+      <p class="promo-big">−50<span>%</span></p>
+      <div>
+        <h2>Организатору — альбом за полцены</h2>
+        <p>Организатор тратит на подготовку съёмки больше времени, чем остальные родители. В благодарность — скидка на его фотокнигу.</p>
+        <details><summary>Условия</summary><p>Организатор — один человек от группы или класса. С ним заключается договор, он ведёт переговоры и согласования и участвует в организации фотосессии.</p></details>
+      </div>
+    </article>
+    <article class="promo promo-teal">
+      <p class="promo-big">0<span>₽</span></p>
+      <div>
+        <h2>Приведи друга — альбом бесплатно</h2>
+        <p>Расскажите о нас другому классу. Если заказ пришёл по вашей рекомендации — ваша фотокнига бесплатно.</p>
+        <details><summary>Условия</summary><p>Нужно подтверждение от представителя класса (группы), в заказе — больше 15 фотокниг. Скидка действует на фотокнигу выпускника или индивидуальную фотокнигу на 3 разворота.</p></details>
+      </div>
+    </article>
+  </section>
+
+  <!-- СВОБОДНЫЕ ДАТЫ -->
+  <section class="dates" id="dates">
+    <div class="dates-head">
+      <p class="eyebrow">Весенние съёмки</p>
+      <h2 class="h2"><span id="datesLeft">—</span></h2>
+      <p class="muted" id="datesNote">Дату закрепляем за группой после договора и аванса 5 000 ₽.</p>
+    </div>
+    <div class="dates-list" id="datesList" role="list"></div>
+  </section>
+
+  <!-- КАЛЬКУЛЯТОР -->
+  <section class="calc screen" id="calc">
+    <div class="calc-grid">
+      <form class="calc-form" id="calcForm" onsubmit="return false">
+        <div class="sec-head">
+          <p class="eyebrow">Калькулятор для организатора</p>
+          <h2 class="h2">Сколько стоит альбом <em>на весь класс</em></h2>
+          <p class="muted">Сумма на класс и на одного ребёнка — сразу, со скидкой организатора.</p>
+        </div>
+        <fieldset>
+          <legend>Где снимаем</legend>
+          <div class="seg" id="segKind">
+            <label><input type="radio" name="kind" value="sad" checked><span>Детский сад</span></label>
+            <label><input type="radio" name="kind" value="nach"><span>Начальная школа</span></label>
+            <label><input type="radio" name="kind" value="star"><span>Старшая школа</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Альбом</legend>
+          <div class="pkgs" id="pkgs"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Сколько детей <output id="kidsOut">25</output></legend>
+          <div class="kids">
+            <button type="button" class="step" data-step="-1" aria-label="Меньше">−</button>
+            <input type="range" id="kids" min="15" max="40" value="25" aria-label="Количество детей">
+            <button type="button" class="step" data-step="1" aria-label="Больше">+</button>
+          </div>
+          <p class="hint">Минимальный заказ — 15 альбомов. Если выпускников меньше, посчитаем индивидуально.</p>
+        </fieldset>
+
+        <fieldset class="extras">
+          <legend>Дополнительно</legend>
+          <div class="row">
+            <span>Дополнительный разворот в каждый альбом <small>+400 ₽ за альбом</small></span>
+            <span class="mini-step">
+              <button type="button" data-spread="-1" aria-label="Убрать разворот">−</button>
+              <output id="spreadsOut">0</output>
+              <button type="button" data-spread="1" aria-label="Добавить разворот">+</button>
+            </span>
+          </div>
+          <label class="row check"><span>Обработка фото за 3 дня <small>+3 000 ₽ на заказ</small></span><input type="checkbox" id="fastPhoto"><i></i></label>
+          <label class="row check"><span>Вёрстка макета за 7 дней <small>+5 000 ₽ на заказ</small></span><input type="checkbox" id="fastLayout"><i></i></label>
+          <label class="row check"><span>Я организатор <small>−50% на мой альбом</small></span><input type="checkbox" id="organizer" checked><i></i></label>
+        </fieldset>
+      </form>
+
+      <aside class="receipt" aria-live="polite">
+        <p class="receipt-k" id="rTitle">Детский сад · Стандарт</p>
+        <ul class="receipt-lines" id="rLines"></ul>
+        <div class="receipt-total">
+          <span>На весь класс</span>
+          <strong id="rTotal">—</strong>
+        </div>
+        <div class="receipt-split">
+          <div><span>С одного родителя</span><strong id="rPer">—</strong></div>
+          <div id="rOrgBox"><span>Альбом организатора</span><strong id="rOrg">—</strong></div>
+        </div>
+        <p class="receipt-note">Аванс 5 000 ₽ — при договоре, остальное — когда утвердите макеты.</p>
+        <div class="receipt-cta">
+          <button class="btn btn-coral" id="shareBtn">Отправить родителям класса</button>
+          <button class="btn btn-ink" data-lead="Заказать по расчёту" data-with-calc>Забронировать съёмку</button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ЛИСТАЛКА -->
+  <section class="book-sec screen" id="book">
+    <div class="sec-head center">
+      <p class="eyebrow">Готовые альбомы</p>
+      <h2 class="h2">Полистайте, <em>что получите на руки</em></h2>
+    </div>
+    <div class="book-tabs" id="bookTabs" role="tablist"></div>
+    <div class="book-stage">
+      <button class="book-arrow prev" id="bookPrev" aria-label="Назад">‹</button>
+      <div class="book" id="book3d" tabindex="0" aria-label="Альбом. Листайте стрелками или свайпом"></div>
+      <button class="book-arrow next" id="bookNext" aria-label="Вперёд">›</button>
+    </div>
+    <p class="book-count" id="bookCount"></p>
+    <p class="book-hint">Нажмите на край страницы или проведите пальцем</p>
+  </section>
+
+  <!-- АЛЬБОМЫ И ЦЕНЫ -->
+  <section class="prices screen" id="prices">
+    <div class="sec-head split">
+      <p class="eyebrow">Варианты альбомов</p>
+      <h2 class="h2">Три альбома — <em>одна цена</em> для сада и школы</h2>
+      <p class="muted">Плотные страницы, толстый переплёт, персональная обложка у каждого выпускника. Печать — настоящая химическая «мокрая» фотопечать на профессиональной фотобумаге: книги не выцветают с годами.</p>
+    </div>
+    <div class="price-cards" id="priceCards"></div>
+    <div class="addons">
+      <h3>Дополнительные услуги</h3>
+      <ul>
+        <li><span>Дополнительный разворот</span><b>400 ₽</b></li>
+        <li><span>Дополнительный выезд фотографа — сад</span><b>2 000 ₽/час</b></li>
+        <li><span>Дополнительный выезд фотографа — школа</span><b>5 000 ₽/час</b></li>
+        <li><span>Обработка фотографий за 3 дня</span><b>3 000 ₽</b></li>
+        <li><span>Вёрстка макета за 7 дней</span><b>5 000 ₽</b></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ПУТЬ ЗАКАЗА -->
+  <section class="path screen" id="path">
+    <div class="sec-head center">
+      <p class="eyebrow">Как проходит заказ</p>
+      <h2 class="h2">От договора до альбомов в руках — <em>около 2 месяцев</em></h2>
+    </div>
+    <ol class="steps">
+      <li><span class="n">1</span><h3>Договор</h3><p>Выбираете альбом, фиксируем сроки, цену, скидки и бонусы. Аванс 5 000 ₽ закрепляет дату.</p><small>в день обращения</small></li>
+      <li><span class="n">2</span><h3>Съёмка</h3><p>Фотограф находит контакт с каждым ребёнком. Кто пропустил — бесплатная досъёмка.</p><small>в выбранную дату</small></li>
+      <li><span class="n">3</span><h3>Макет на проверку</h3><p>Обработка — до 3 недель, вёрстка — до 3 недель. Вы проверяете макеты, мы вносим правки.</p><small>до 6 недель</small></li>
+      <li><span class="n">4</span><h3>Печать</h3><p>Печатаем только после вашего утверждения. Остаток оплаты — при отправке в печать.</p><small>после утверждения</small></li>
+      <li><span class="n">5</span><h3>Выдача</h3><p>Привозим готовые альбомы. Проверьте их сразу: брак по вине печати или доставки переделаем.</p><small>≈ 2 месяца от съёмки</small></li>
+    </ol>
+  </section>
+
+  <!-- ФОТО -->
+  <section class="gallery" id="gallery">
+    <div class="sec-head">
+      <p class="eyebrow">Портфолио</p>
+      <h2 class="h2">Снимки <em>с наших фотосессий</em></h2>
+    </div>
+    <div class="chips" id="chips" role="tablist"></div>
+    <div class="masonry" id="masonry"></div>
+    <button class="btn btn-line more" id="moreBtn">Показать ещё</button>
+  </section>
+
+  <!-- ОТЗЫВЫ -->
+  <section class="reviews" id="reviews">
+    <div class="sec-head">
+      <p class="eyebrow">Отзывы родителей</p>
+      <h2 class="h2">«Не первый раз — <em>и будем ещё</em>»</h2>
+    </div>
+    <div class="rev-track" id="revTrack"></div>
+  </section>
+
+  <!-- ВОПРОСЫ -->
+  <section class="faq" id="faq">
+    <div class="sec-head">
+      <p class="eyebrow">Вопросы и ответы</p>
+      <h2 class="h2">Что обычно <em>спрашивают</em></h2>
+    </div>
+    <div class="faq-list" id="faqList"></div>
+  </section>
+
+  <!-- КОНТАКТЫ -->
+  <section class="contact screen" id="contacts">
+    <figure><img src="img/nach-01.jpg" alt="Класс на выпускной фотосессии" loading="lazy"></figure>
+    <div>
+      <p class="eyebrow">Будем на связи</p>
+      <h2 class="h2">Забронируйте дату <em>для своего класса</em></h2>
+      <p class="muted">Оставьте заявку — ответим, расскажем детали и закрепим дату съёмки.</p>
+      <button class="btn btn-coral" data-lead="Забронировать съёмку">Оставить заявку</button>
+      <ul class="contact-list">
+        <li><a href="tel:+79655588508">+7 (965) 55-88-008</a></li>
+        <li><a href="mailto:barbus.book@mail.ru">barbus.book@mail.ru</a></li>
+        <li><a href="https://vk.ru/barbustudio" target="_blank" rel="noopener">ВКонтакте</a> · <a href="https://max.ru/u/f9LHodD0cOKKDfXPJ8Dr0yk0RmMc_TVhewGxX2aHMtHZao0wfUe473rxg_c" target="_blank" rel="noopener">MAX</a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div>
+    <b>ИП Барбус Е.А.</b> · ИНН 590419040034 · ОГРНИП 324595800108375
+  </div>
+  <div>
+    <a href="https://barbusbook.ru/politika-obrabotki-dannyh" target="_blank" rel="noopener">Политика обработки персональных данных</a> ·
+    <a href="https://barbusbook.ru/oferta" target="_blank" rel="noopener">Оферта</a>
+  </div>
+</footer>
+
+<!-- Нижняя панель на телефоне -->
+<div class="dock" id="dock">
+  <a class="btn btn-line" href="#calc">Рассчитать</a>
+  <button class="btn btn-ink" data-lead="Забронировать съёмку">Забронировать</button>
+</div>
+
+<!-- ЗАЯВКА -->
+<dialog class="sheet" id="leadDlg" aria-labelledby="leadTitle">
+  <form method="dialog" class="sheet-x"><button aria-label="Закрыть">×</button></form>
+  <form id="leadForm" class="lead" novalidate>
+    <h2 id="leadTitle">Забронировать съёмку</h2>
+    <p class="muted" id="leadSub">Пара полей — и заявка у нас. Ответим и согласуем детали.</p>
+    <div class="lead-calc" id="leadCalc" hidden></div>
+    <label>Имя<input name="name" autocomplete="given-name" required></label>
+    <label>Телефон<input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7" required></label>
+    <div class="two">
+      <label>Сад или школа, группа/класс<input name="place" placeholder="Школа № 3, 4 «Б»"></label>
+      <label>Детей<input name="kids" type="number" min="1" max="60" inputmode="numeric"></label>
+    </div>
+    <div class="two">
+      <label>Альбом<select name="pkg"><option value="">Ещё не выбрали</option></select></label>
+      <label>Дата съёмки<select name="date"><option value="">Обсудим</option></select></label>
+    </div>
+    <label class="agree"><input type="checkbox" name="agree" required> <span>Согласен(на) на обработку персональных данных по <a href="https://barbusbook.ru/politika-obrabotki-dannyh" target="_blank" rel="noopener">политике</a></span></label>
+    <p class="err" id="leadErr" hidden></p>
+    <button class="btn btn-coral wide" type="submit">Отправить заявку</button>
+  </form>
+  <div class="lead-done" id="leadDone" hidden>
+    <p class="done-mark">✓</p>
+    <h2>Заявка отправлена</h2>
+    <p class="muted">Скоро свяжемся с вами, чтобы обсудить детали и закрепить дату.</p>
+    <button class="btn btn-line" id="leadDoneShare">Отправить расчёт родителям</button>
+  </div>
+</dialog>
+
+<!-- ПОДЕЛИТЬСЯ -->
+<dialog class="sheet" id="shareDlg" aria-labelledby="shareTitle">
+  <form method="dialog" class="sheet-x"><button aria-label="Закрыть">×</button></form>
+  <h2 id="shareTitle">Отправить родителям класса</h2>
+  <p class="muted">Готовое сообщение с вариантами и ценами. Можно поправить перед отправкой.</p>
+  <textarea id="shareText" rows="10"></textarea>
+  <div class="share-btns">
+    <a class="btn btn-ink" id="shTg" target="_blank" rel="noopener">Telegram</a>
+    <a class="btn btn-ink" id="shWa" target="_blank" rel="noopener">WhatsApp</a>
+    <a class="btn btn-ink" id="shVk" target="_blank" rel="noopener">ВКонтакте</a>
+    <button class="btn btn-line" id="shCopy">Скопировать</button>
+    <button class="btn btn-line" id="shNative" hidden>Ещё…</button>
+  </div>
+</dialog>
+
+<!-- ПРОСМОТР ФОТО -->
+<dialog class="lb" id="lb" aria-label="Просмотр фото">
+  <button class="lb-x" id="lbX" aria-label="Закрыть">×</button>
+  <button class="lb-nav prev" id="lbPrev" aria-label="Предыдущее">‹</button>
+  <img id="lbImg" alt="">
+  <button class="lb-nav next" id="lbNext" aria-label="Следующее">›</button>
+  <p class="lb-n" id="lbN"></p>
+</dialog>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script src="gallery.js"></script>
+<script src="app.js?v=13"></script>
+</body>
+</html>
