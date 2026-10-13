@@ -297,7 +297,8 @@ function renderPrices() {
         ${p.hit ? '<span class="badge">Чаще всего выбирают</span>' : ''}
         <h3>${p.name}<small>${p.spreads} ${plural(p.spreads, 'разворот', 'разворота', 'разворотов')}</small></h3>
         <p class="price num">${rub(p.price)} <small>за альбом</small></p>
-        <ul>${PKG_ITEMS[st.kind][p.id].map(([h, d]) => `<li><b>${h}</b>${d ? ` — ${d}` : ''}</li>`).join('')}</ul>
+        <ul>${PKG_ITEMS[st.kind][p.id].map(([h, d]) => `<li><b>${h}</b>${d ? `<span class="d"> — ${d}</span>` : ''}</li>`).join('')}</ul>
+        <button class="more-btn" data-more aria-expanded="false">Подробнее о составе</button>
         <button class="btn ${p.hit ? 'btn-coral' : 'btn-ink'}" data-lead="Заказать «${p.name}»" data-pkg="${p.id}">Заказать</button>
       </div>
     </article>`).join('');
@@ -310,6 +311,12 @@ function renderPrices() {
   ].map(([a, b]) => `<li><span>${a}</span><b class="num">${b}</b></li>`).join('');
 }
 function bindPrices() {
+  $('#priceCards').addEventListener('click', e => {
+    const b = e.target.closest('[data-more]'); if (!b) return;
+    const open = $$('#priceCards .pcard')[0].classList.toggle('open');
+    $$('#priceCards .pcard').forEach(c => c.classList.toggle('open', open));
+    $$('#priceCards [data-more]').forEach(x => { x.textContent = open ? 'Свернуть' : 'Подробнее о составе'; x.setAttribute('aria-expanded', open); });
+  });
   $$('#segPrices input').forEach(i => i.onchange = () => { st.kind = i.value; renderPrices(); update(); renderDesigns(); });
   renderPrices();
 }
