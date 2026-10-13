@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=13">
+<link rel="stylesheet" href="style.css?v=19">
 </head>
 <body>
 
@@ -26,8 +26,10 @@
     <a href="#calc">Калькулятор</a>
     <a href="#book">Полистать</a>
     <a href="#prices">Альбомы</a>
+    <a href="#designs">Дизайны</a>
     <a href="#path">Как заказать</a>
     <a href="#gallery">Фото</a>
+    <a href="#reviews">Отзывы</a>
     <a href="#faq">Вопросы</a>
   </nav>
   <a class="head-phone" href="tel:+79655588508">+7 (965) 55-88-008</a>
@@ -132,6 +134,7 @@
           </div>
           <label class="row check"><span>Обработка фото за 3 дня <small>+3 000 ₽ на заказ</small></span><input type="checkbox" id="fastPhoto"><i></i></label>
           <label class="row check"><span>Вёрстка макета за 7 дней <small>+5 000 ₽ на заказ</small></span><input type="checkbox" id="fastLayout"><i></i></label>
+          <label class="row check" id="studioRow" hidden><span>Съёмка в студии <small id="studioHint">студия входит в цену</small></span><input type="checkbox" id="studio"><i></i></label>
           <label class="row check"><span>Я организатор <small>−50% на мой альбом</small></span><input type="checkbox" id="organizer" checked><i></i></label>
         </fieldset>
       </form>
@@ -177,18 +180,55 @@
     <div class="sec-head split">
       <p class="eyebrow">Варианты альбомов</p>
       <h2 class="h2">Три альбома — <em>одна цена</em> для сада и школы</h2>
-      <p class="muted">Плотные страницы, толстый переплёт, персональная обложка у каждого выпускника. Печать — настоящая химическая «мокрая» фотопечать на профессиональной фотобумаге: книги не выцветают с годами.</p>
+      <div class="prices-side">
+      <div class="seg seg-wide" id="segPrices" role="tablist" aria-label="Для кого альбом">
+        <label><input type="radio" name="pkind" value="sad" checked><span>Детский сад</span></label>
+        <label><input type="radio" name="pkind" value="nach"><span>Начальная школа</span></label>
+        <label><input type="radio" name="pkind" value="star"><span>Старшая школа</span></label>
+      </div>
+      <p class="studio-note" id="studioNote" hidden></p>
+      </div>
     </div>
     <div class="price-cards" id="priceCards"></div>
     <div class="addons">
-      <h3>Дополнительные услуги</h3>
-      <ul>
-        <li><span>Дополнительный разворот</span><b>400 ₽</b></li>
-        <li><span>Дополнительный выезд фотографа — сад</span><b>2 000 ₽/час</b></li>
-        <li><span>Дополнительный выезд фотографа — школа</span><b>5 000 ₽/час</b></li>
-        <li><span>Обработка фотографий за 3 дня</span><b>3 000 ₽</b></li>
-        <li><span>Вёрстка макета за 7 дней</span><b>5 000 ₽</b></li>
-      </ul>
+      <div>
+        <h3>Дополнительные услуги</h3>
+        <ul id="addonsList"></ul>
+      </div>
+      <div>
+        <h3>Также можно заказать</h3>
+        <p class="also">Фотографии в электронном виде · печать фотографий · сувенирную продукцию — календари, кружки и другое · плакаты и холсты с фотографиями</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ДИЗАЙНЫ -->
+  <section class="designs screen" id="designs">
+    <div class="sec-head split">
+      <p class="eyebrow">Дизайны обложек</p>
+      <h2 class="h2">Готовые дизайны — <em>или свой</em></h2>
+      <p class="muted">Выберите готовый макет. Можем разработать индивидуальный дизайн, поменять порядок разворотов и подбор фотографий.</p>
+    </div>
+    <div class="chips" id="designTabs" role="tablist"></div>
+    <div class="design-grid" id="designGrid"></div>
+  </section>
+
+  <!-- ПОЧЕМУ МЫ -->
+  <section class="about" id="about">
+    <div class="about-col">
+      <p class="about-k">Опыт</p>
+      <p class="about-big num">с 2014</p>
+      <ul><li>более 10 лет работы</li><li>более 18 000 выпускных альбомов</li><li>более 142 000 фотографий выпускников</li></ul>
+    </div>
+    <div class="about-col">
+      <p class="about-k">Профессионализм</p>
+      <p class="about-quote">Фотограф с лёгкостью находит контакт с каждым ребёнком</p>
+      <ul><li>качественные фотографии за счёт профессиональной техники</li><li>бесплатная досъёмка тех, кто пропустил</li></ul>
+    </div>
+    <div class="about-col">
+      <p class="about-k">Качество</p>
+      <p class="about-quote">Настоящая химическая «мокрая» фотопечать — книги не выцветают годами</p>
+      <ul><li>персональная обложка — твёрдая, с глянцевой ламинацией</li><li>книжный переплёт, плотные страницы</li><li>профессиональное оборудование и фотобумага</li></ul>
     </div>
   </section>
 
@@ -205,6 +245,11 @@
       <li><span class="n">4</span><h3>Печать</h3><p>Печатаем только после вашего утверждения. Остаток оплаты — при отправке в печать.</p><small>после утверждения</small></li>
       <li><span class="n">5</span><h3>Выдача</h3><p>Привозим готовые альбомы. Проверьте их сразу: брак по вине печати или доставки переделаем.</p><small>≈ 2 месяца от съёмки</small></li>
     </ol>
+    <ul class="terms">
+      <li>Работаем только по договору</li>
+      <li>Все вопросы согласуем с одним родителем-представителем</li>
+      <li>На съёмке — не больше двух родителей, заказчик присутствует обязательно</li>
+    </ul>
   </section>
 
   <!-- ФОТО -->
@@ -223,8 +268,19 @@
     <div class="sec-head">
       <p class="eyebrow">Отзывы родителей</p>
       <h2 class="h2">«Не первый раз — <em>и будем ещё</em>»</h2>
+      <p class="muted" id="revCount"></p>
     </div>
-    <div class="rev-track" id="revTrack"></div>
+    <div class="rev-grid" id="revGrid"></div>
+    <button class="btn btn-line more" id="revMore">Показать все отзывы</button>
+  </section>
+
+  <!-- БЛОГ -->
+  <section class="blog" id="blog">
+    <div class="sec-head">
+      <p class="eyebrow">Блог</p>
+      <h2 class="h2">Новости <em>студии</em></h2>
+    </div>
+    <div class="blog-grid" id="blogGrid"></div>
   </section>
 
   <!-- ВОПРОСЫ -->
@@ -313,6 +369,14 @@
   </div>
 </dialog>
 
+<!-- ЗАПИСЬ БЛОГА -->
+<dialog class="sheet post" id="postDlg" aria-labelledby="postTitle">
+  <form method="dialog" class="sheet-x"><button aria-label="Закрыть">×</button></form>
+  <img id="postImg" alt="">
+  <h2 id="postTitle"></h2>
+  <div id="postBody"></div>
+</dialog>
+
 <!-- ПРОСМОТР ФОТО -->
 <dialog class="lb" id="lb" aria-label="Просмотр фото">
   <button class="lb-x" id="lbX" aria-label="Закрыть">×</button>
@@ -325,6 +389,7 @@
 <div class="toast" id="toast" role="status"></div>
 
 <script src="gallery.js"></script>
-<script src="app.js?v=13"></script>
+<script src="reviews.js"></script>
+<script src="app.js?v=19"></script>
 </body>
 </html>
