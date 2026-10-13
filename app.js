@@ -119,6 +119,24 @@ menuBtn.onclick = () => setMenu(mnav.hidden);
 mnav.addEventListener('click', e => { if (e.target.closest('a,button')) setMenu(false); });
 addEventListener('keydown', e => { if (e.key === 'Escape' && !mnav.hidden) setMenu(false); });
 addEventListener('resize', () => { if (innerWidth > 1200 && !mnav.hidden) setMenu(false); });
+// подсветка раздела, в котором сейчас находимся
+const navLinks = $$('#mnav a[href^="#"]');
+const spy = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) navLinks.forEach(a => a.classList.toggle('is-current', a.getAttribute('href') === '#' + e.target.id));
+}), { rootMargin: '-45% 0px -50% 0px' });
+navLinks.forEach(a => { const t = $(a.getAttribute('href')); if (t) spy.observe(t); });
+
+/* ---------- загрузка ---------- */
+(() => {
+  const el = $('#loader'), t0 = performance.now();
+  document.body.classList.add('loading');
+  const hide = () => {
+    const wait = Math.max(0, 1300 - (performance.now() - t0)); // логотип успевает «щёлкнуть»
+    setTimeout(() => { el.classList.add('done'); document.body.classList.remove('loading'); }, wait);
+  };
+  if (document.readyState === 'complete') hide(); else addEventListener('load', hide);
+  setTimeout(hide, 4000); // медленный интернет — не держим дольше
+})();
 
 /* ---------- даты ---------- */
 const WD = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];

@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=35">
+<link rel="stylesheet" href="style.css?v=37">
 </head>
 <body>
 
@@ -39,24 +39,38 @@
 
 <!-- Меню для телефона и планшета -->
 <nav class="mnav" id="mnav" aria-label="Разделы сайта" hidden>
+  <div class="mnav-top">
+    <img src="img/t/nach-10.jpg" alt="" width="56" height="70">
+    <p>Barbus Studio<br><span>Пермь · фотокниги с 2014 года</span></p>
+  </div>
   <ol>
-    <li><a href="#dates"><span>01</span>Свободные даты</a></li>
-    <li><a href="#calc"><span>02</span>Калькулятор</a></li>
-    <li><a href="#book"><span>03</span>Полистать альбом</a></li>
-    <li><a href="#prices"><span>04</span>Альбомы и цены</a></li>
-    <li><a href="#designs"><span>05</span>Дизайны</a></li>
-    <li><a href="#path"><span>06</span>Как заказать</a></li>
-    <li><a href="#gallery"><span>07</span>Фото</a></li>
-    <li><a href="#reviews"><span>08</span>Отзывы</a></li>
-    <li><a href="#blog"><span>09</span>Блог</a></li>
-    <li><a href="#faq"><span>10</span>Вопросы</a></li>
-    <li><a href="#contacts"><span>11</span>Контакты</a></li>
+    <li><a href="#dates"><sup>01</sup>Свободные даты<i>↗</i></a></li>
+    <li><a href="#calc"><sup>02</sup>Калькулятор<i>↗</i></a></li>
+    <li><a href="#book"><sup>03</sup>Полистать альбом<i>↗</i></a></li>
+    <li><a href="#prices"><sup>04</sup>Альбомы и цены<i>↗</i></a></li>
+    <li><a href="#designs"><sup>05</sup>Дизайны<i>↗</i></a></li>
+    <li><a href="#path"><sup>06</sup>Как заказать<i>↗</i></a></li>
+    <li><a href="#gallery"><sup>07</sup>Фото<i>↗</i></a></li>
+    <li><a href="#reviews"><sup>08</sup>Отзывы<i>↗</i></a></li>
+    <li><a href="#blog"><sup>09</sup>Блог<i>↗</i></a></li>
+    <li><a href="#faq"><sup>10</sup>Вопросы<i>↗</i></a></li>
+    <li><a href="#contacts"><sup>11</sup>Контакты<i>↗</i></a></li>
   </ol>
   <div class="mnav-foot">
     <a class="mnav-phone num" href="tel:+79655588508">+7 (965) 55-88-008</a>
     <button class="btn btn-coral" data-lead="Забронировать съёмку">Забронировать съёмку</button>
   </div>
 </nav>
+
+<!-- Загрузка -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-in">
+    <span class="loader-mark"><img src="img/logo-full.png" alt="" width="114" height="108"></span>
+    <p class="loader-name">Barbus Studio</p>
+    <p class="loader-sub">выпускные фотокниги</p>
+    <span class="loader-bar"><i></i></span>
+  </div>
+</div>
 
 <main id="top">
 
@@ -429,6 +443,6 @@
 
 <script src="gallery.js"></script>
 <script src="reviews.js"></script>
-<script src="app.js?v=35"></script>
+<script src="app.js?v=37"></script>
 </body>
 </html>
