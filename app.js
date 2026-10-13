@@ -10,7 +10,7 @@ const CONFIG = {
     ['2027-05-14', true], ['2027-05-17', false], ['2027-05-19', true], ['2027-05-20', false],
     ['2027-05-21', true], ['2027-05-25', true], ['2027-05-26', false], ['2027-05-27', true],
   ],
-  siteUrl: 'https://barbustudio.ru/',
+  siteUrl: 'https://danildenis.github.io/barbustudio/',
 };
 
 // Состав и цены — со страниц старого сайта (сад, начальная, старшая школа)
