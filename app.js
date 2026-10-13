@@ -108,6 +108,18 @@ addEventListener('scroll', onScroll, { passive: true }); onScroll();
 const setHead = () => document.documentElement.style.setProperty('--head', $('#head').offsetHeight + 'px');
 addEventListener('resize', setHead); setHead();
 
+/* ---------- меню (телефон, планшет) ---------- */
+const menuBtn = $('#menuBtn'), mnav = $('#mnav');
+const setMenu = open => {
+  mnav.hidden = !open; menuBtn.setAttribute('aria-expanded', open);
+  document.body.classList.toggle('menu-open', open);
+  menuBtn.lastChild.textContent = open ? 'Закрыть' : 'Меню';
+};
+menuBtn.onclick = () => setMenu(mnav.hidden);
+mnav.addEventListener('click', e => { if (e.target.closest('a,button')) setMenu(false); });
+addEventListener('keydown', e => { if (e.key === 'Escape' && !mnav.hidden) setMenu(false); });
+addEventListener('resize', () => { if (innerWidth > 1200 && !mnav.hidden) setMenu(false); });
+
 /* ---------- даты ---------- */
 const WD = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
 function renderDates() {

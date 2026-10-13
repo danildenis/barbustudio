@@ -547,3 +547,63 @@ dialog::backdrop{background:rgba(20,17,14,.55);backdrop-filter:blur(3px)}
   .prices:has(#studioNote:not([hidden])) .pcard figure{max-height:calc((100svh - var(--head)) * .155)}
   .prices .studio-note{margin-top:6px}
 }
+
+/* ---------- меню для телефона и планшета ---------- */
+.menu-btn{display:none;align-items:center;gap:10px;min-height:42px;padding:0 16px;border-radius:99px;border:1.5px solid var(--ink);background:transparent;font-size:14px;font-weight:600}
+.menu-ico{position:relative;width:16px;height:10px}
+.menu-ico i{position:absolute;left:0;right:0;height:1.5px;background:currentColor;transition:transform .3s,top .3s}
+.menu-ico i:first-child{top:0}.menu-ico i:last-child{top:8px}
+.menu-btn[aria-expanded=true] .menu-ico i:first-child{top:4px;transform:rotate(45deg)}
+.menu-btn[aria-expanded=true] .menu-ico i:last-child{top:4px;transform:rotate(-45deg)}
+@media(max-width:1200px){.menu-btn{display:inline-flex}}
+.mnav{position:fixed;inset:var(--head) 0 0 0;z-index:19;display:flex;flex-direction:column;justify-content:space-between;padding:12px var(--gut) calc(20px + env(safe-area-inset-bottom));background:var(--paper);overflow:auto;animation:mnavIn .3s ease-out}
+.mnav[hidden]{display:none}
+@keyframes mnavIn{from{opacity:0;transform:translateY(-12px)}}
+.mnav ol{list-style:none;margin:0;padding:0}
+.mnav li{border-bottom:1px solid var(--line)}
+.mnav a:not(.btn){display:flex;align-items:baseline;gap:16px;padding:13px 0;text-decoration:none;font:400 clamp(24px,6.4vw,34px)/1.1 var(--serif)}
+.mnav a span{font:600 12px var(--sans);color:var(--teal);letter-spacing:.08em;min-width:22px}
+.mnav-foot{display:grid;gap:12px;padding-top:20px}
+.mnav-foot .mnav-phone{font-size:20px;font-weight:600;text-decoration:none;justify-self:start;padding:0}
+body.menu-open{overflow:hidden}
+body.menu-open .dock{transform:translateY(110%)!important}
+
+/* ---------- полосы: чередующиеся разделы на своём фоне во всю ширину ---------- */
+.band{position:relative;background:var(--paper-2);box-shadow:0 0 0 100vmax var(--paper-2);clip-path:inset(0 -100vmax);padding-bottom:var(--pad)}
+.band.screen{padding-bottom:clamp(20px,3.5vh,40px)}
+.band + section{margin-top:0}
+.band .seg{background:var(--paper)}
+.band .addons{background:var(--card)}
+.band .chips button:not([aria-selected=true]),.band .book-tabs button:not([aria-selected=true]){background:var(--paper)}
+.band-ink{background:var(--ink);box-shadow:0 0 0 100vmax var(--ink);color:var(--paper)}
+.band-ink .about-k{color:#9fd3cf}
+.band-ink .about-col{border-color:rgba(245,240,232,.16)}
+.band-ink ul{color:rgba(245,240,232,.72)}
+.about.band{padding-top:clamp(48px,7vw,88px);padding-bottom:clamp(48px,7vw,88px)}
+.about.band + section{padding-top:var(--pad)}
+
+/* нижняя панель: кнопка наверх */
+.dock-up{display:none}
+@media(max-width:640px){
+  .dock{grid-template-columns:46px 1fr 1fr}
+  .dock-up{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;border:1.5px solid var(--ink);text-decoration:none;font-size:20px}
+  /* на телефоне — заметный заголовок у каждого раздела */
+  section .eyebrow{display:inline-block;padding:5px 10px;border-radius:99px;background:var(--teal-2);color:var(--teal);margin-bottom:12px}
+  .band .eyebrow{background:var(--paper)}
+  .band-ink .eyebrow{background:rgba(255,255,255,.1);color:#9fd3cf}
+  .hero-cover .eyebrow{background:none}
+}
+
+@media(max-width:480px){
+  .head{gap:12px;padding-top:8px;padding-bottom:8px}
+  .brand b{white-space:nowrap;font-size:19px}
+  .brand small{display:none}
+  .brand-mark{width:46px;height:44px}
+  .menu-btn{padding:0 14px;min-width:104px;justify-content:center}
+}
+
+/* раздел перед полосой — отступ снизу, чтобы содержимое не упиралось в край полосы */
+section:not(.band):has(+ .band){padding-bottom:var(--pad)}
+@media (min-width:961px) and (min-height:640px){
+  section.screen:not(.band):has(+ .band){padding-bottom:clamp(20px,3.5vh,40px)}
+}

@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=32">
+<link rel="stylesheet" href="style.css?v=35">
 </head>
 <body>
 
@@ -34,7 +34,29 @@
   </nav>
   <a class="head-phone" href="tel:+79655588508">+7 (965) 55-88-008</a>
   <button class="btn btn-ink btn-sm" data-lead="Забронировать съёмку">Забронировать</button>
+  <button class="menu-btn" id="menuBtn" aria-controls="mnav" aria-expanded="false"><span class="menu-ico" aria-hidden="true"><i></i><i></i></span>Меню</button>
 </header>
+
+<!-- Меню для телефона и планшета -->
+<nav class="mnav" id="mnav" aria-label="Разделы сайта" hidden>
+  <ol>
+    <li><a href="#dates"><span>01</span>Свободные даты</a></li>
+    <li><a href="#calc"><span>02</span>Калькулятор</a></li>
+    <li><a href="#book"><span>03</span>Полистать альбом</a></li>
+    <li><a href="#prices"><span>04</span>Альбомы и цены</a></li>
+    <li><a href="#designs"><span>05</span>Дизайны</a></li>
+    <li><a href="#path"><span>06</span>Как заказать</a></li>
+    <li><a href="#gallery"><span>07</span>Фото</a></li>
+    <li><a href="#reviews"><span>08</span>Отзывы</a></li>
+    <li><a href="#blog"><span>09</span>Блог</a></li>
+    <li><a href="#faq"><span>10</span>Вопросы</a></li>
+    <li><a href="#contacts"><span>11</span>Контакты</a></li>
+  </ol>
+  <div class="mnav-foot">
+    <a class="mnav-phone num" href="tel:+79655588508">+7 (965) 55-88-008</a>
+    <button class="btn btn-coral" data-lead="Забронировать съёмку">Забронировать съёмку</button>
+  </div>
+</nav>
 
 <main id="top">
 
@@ -106,7 +128,7 @@
   </section>
 
   <!-- КАЛЬКУЛЯТОР -->
-  <section class="calc screen" id="calc">
+  <section class="calc screen band" id="calc">
     <div class="calc-grid">
       <form class="calc-form" id="calcForm" onsubmit="return false">
         <div class="sec-head">
@@ -192,7 +214,7 @@
   </section>
 
   <!-- АЛЬБОМЫ И ЦЕНЫ -->
-  <section class="prices screen" id="prices">
+  <section class="prices screen band" id="prices">
     <div class="sec-head split">
       <p class="eyebrow">Варианты альбомов · одна цена для сада и школы</p>
       <h2 class="h2">Три альбома — <em>на выбор</em></h2>
@@ -230,7 +252,7 @@
   </section>
 
   <!-- ПОЧЕМУ МЫ -->
-  <section class="about" id="about">
+  <section class="about band band-ink" id="about">
     <div class="about-col">
       <p class="about-k">Опыт</p>
       <p class="about-big num">с 2014</p>
@@ -269,7 +291,7 @@
   </section>
 
   <!-- ФОТО -->
-  <section class="gallery" id="gallery">
+  <section class="gallery band" id="gallery">
     <div class="sec-head">
       <p class="eyebrow">Портфолио</p>
       <h2 class="h2">Снимки <em>с наших фотосессий</em></h2>
@@ -291,7 +313,7 @@
   </section>
 
   <!-- БЛОГ -->
-  <section class="blog" id="blog">
+  <section class="blog band" id="blog">
     <div class="sec-head">
       <p class="eyebrow">Блог</p>
       <h2 class="h2">Новости <em>студии</em></h2>
@@ -337,6 +359,7 @@
 
 <!-- Нижняя панель на телефоне -->
 <div class="dock" id="dock">
+  <a class="dock-up" href="#top" aria-label="Наверх">↑</a>
   <a class="btn btn-line" href="#calc">Рассчитать</a>
   <button class="btn btn-ink" data-lead="Забронировать съёмку">Забронировать</button>
 </div>
@@ -406,6 +429,6 @@
 
 <script src="gallery.js"></script>
 <script src="reviews.js"></script>
-<script src="app.js?v=32"></script>
+<script src="app.js?v=35"></script>
 </body>
 </html>
