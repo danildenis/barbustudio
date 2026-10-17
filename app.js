@@ -493,10 +493,16 @@ function bindLb() {
 /* ---------- отзывы, вопросы ---------- */
 const esc = t => t.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
 let revAll = false;
+const revText = t => esc(t.replace(/([!?.])\1{3,}/g, '$1$1$1')).replace(/\n/g, '<br>');
 function renderReviews() {
-  const list = revAll ? REVIEWS : REVIEWS.slice(0, 9);
-  $('#revCount').textContent = `${REVIEWS.length} ${plural(REVIEWS.length, 'отзыв', 'отзыва', 'отзывов')} с нашего сайта — без правок`;
-  $('#revGrid').innerHTML = list.map(([t, n]) => `<figure class="rev"><blockquote>${esc(t.replace(/([!?.])\1{3,}/g, '$1$1$1')).replace(/\n/g, '<br>')}</blockquote><figcaption>${esc(n)}</figcaption></figure>`).join('');
+  // самый длинный отзыв — крупной цитатой, остальные списком
+  const lead = REVIEWS.reduce((a, b) => b[0].length > a[0].length ? b : a);
+  const rest = REVIEWS.filter(r => r !== lead);
+  const list = revAll ? rest : rest.slice(0, 9);
+  $('#revNum').textContent = REVIEWS.length;
+  $('#revWord').textContent = `${plural(REVIEWS.length, 'отзыв', 'отзыва', 'отзывов')} родителей`;
+  $('#revLead').innerHTML = `<blockquote>${revText(lead[0])}</blockquote><figcaption>${esc(lead[1])}</figcaption>`;
+  $('#revGrid').innerHTML = list.map(([t, n]) => `<figure class="rev"><blockquote>${revText(t)}</blockquote><figcaption>${esc(n)}</figcaption></figure>`).join('');
   $('#revMore').hidden = revAll;
   $('#revMore').textContent = `Показать все ${REVIEWS.length} ${plural(REVIEWS.length, 'отзыв', 'отзыва', 'отзывов')}`;
 }
