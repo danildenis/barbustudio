@@ -40,7 +40,7 @@ if (document.documentElement.classList.contains('no-vt')) {
 }
 
 /* ---------- кнопки: мягкое увеличение при касании (наведение — в стилях) ---------- */
-const POP = '.nav a,.brand,.mnav li a,.foot li a,.btn,.link,.door,.pkg,.date:not([disabled]),.step,.mini-step button,.chips button,.book-tabs button,.book-arrow,.menu-btn,.design,.check,.seg label';
+const POP = '.brand,.mnav li a,.foot li a,.btn,.link,.door,.pkg,.date:not([disabled]),.step,.mini-step button,.chips button,.book-tabs button,.book-arrow,.menu-btn,.design,.check,.seg label';
 addEventListener('pointerdown', e => {
   const el = e.target.closest(POP); if (!el) return;
   el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');

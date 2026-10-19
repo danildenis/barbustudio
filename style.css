@@ -2,7 +2,9 @@
    Шрифт Montserrat (выбор клиента), цвета — из логотипа: тёмно-синий контур, бирюзовый корпус,
    тёплый объектив (жёлтый, оранжево-красный). Белый фон, много воздуха, один смысловой блок на экран. */
 :root{
-  --ink:#16203A; --ink-2:#4A5368; --ink-3:#727A8C; --line:#E3E7EE; --tile:#ECEFF4; --tile-line:#D5DBE5; --bg:#FFFFFF;
+  --ink:#16203A; --ink-2:#4A5368; --ink-3:#727A8C; --line:#E3E7EE;
+  /* плашки: тёплые бежевые оттенки, чередуются, чтобы блоки не были одного цвета */
+  --tile:#F5EEE3; --tile-2:#EFE5D6; --tile-3:#F3E9DA; --tile-line:#E3D6C3; --bg:#FFFFFF;
   --navy:#16203A; --turq:#129399; --teal:#0F5B6B; --aqua:#98DFD9; --amber:#FCBA40; --coral:#F2563D; --red:#C8202F;
   /* акцент страницы: --accent для полос и заливок, --accent-ink для текста и кнопок (читаемый на белом) */
   --accent:var(--turq); --accent-2:var(--amber); --accent-ink:var(--teal); --tint:#EAF6F5;
@@ -58,7 +60,7 @@ p{margin:0}
 .btn,.link,.door,.pkg,.date,.step,.mini-step button,.chips button,.book-tabs button,.book-arrow,.menu-btn,.design,.check,.seg label,.mnav li a,.foot li a{transition-property:scale,color,background,border-color,box-shadow,opacity,transform;transition-duration:.45s;transition-timing-function:var(--ease)}
 .door,.pkg,.date,.design{--pop:1.012}
 @media(hover:hover){
-  .nav a:hover,.brand:hover,.mnav li a:hover,.foot li a:hover,.btn:hover,.link:hover,.door:hover,.pkg:hover,.date:not([disabled]):hover,.step:hover,.mini-step button:hover,.chips button:hover,.book-tabs button:hover,.book-arrow:hover,.menu-btn:hover,.design:hover{scale:var(--pop,1.025)}
+  .brand:hover,.mnav li a:hover,.foot li a:hover,.btn:hover,.link:hover,.door:hover,.pkg:hover,.date:not([disabled]):hover,.step:hover,.mini-step button:hover,.chips button:hover,.book-tabs button:hover,.book-arrow:hover,.menu-btn:hover,.design:hover{scale:var(--pop,1.025)}
 }
 @keyframes pop{0%,100%{scale:1}50%{scale:var(--pop,1.025)}}
 .pop{animation:pop .5s cubic-bezier(.45,0,.55,1)}
@@ -72,9 +74,11 @@ p{margin:0}
 .nav{display:flex;gap:clamp(16px,2vw,32px);font-size:13.5px;font-weight:500}
 .nav-l{grid-column:1;justify-self:start}
 .nav-r{grid-column:3;justify-self:end}
-.nav a{display:inline-block;padding:6px 0;text-decoration:none;color:var(--ink-2);white-space:nowrap;transition:opacity .35s,transform .55s var(--ease),color .2s,scale .45s var(--ease)}
+.nav a{position:relative;display:inline-block;padding:6px 0;text-decoration:none;color:var(--ink-2);white-space:nowrap;transition:opacity .35s,transform .55s var(--ease),color .5s var(--ease)}
+/* полоска под словом: при наведении плавно поднимается снизу и проявляется */
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px;background:var(--stripe);opacity:0;transform:translateY(6px) scaleX(.6);transition:opacity .5s var(--ease),transform .6s cubic-bezier(.22,.61,.36,1)}
+.nav a:hover::after,.nav a[aria-current=page]::after{opacity:1;transform:none}
 .nav a:hover,.nav a[aria-current=page]{color:var(--ink)}
-.nav a[aria-current=page]{box-shadow:inset 0 -2px 0 var(--accent)}
 /* прокрутили — пункты уезжают вправо к иконке и гаснут */
 .collapsed .head{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .4s .25s,visibility 0s .65s}
 .collapsed .head .nav a,.collapsed .head .brand{opacity:0}
@@ -153,6 +157,11 @@ main{padding-top:var(--head)}
 .tile .tile-sub{margin-top:4px;font-size:14px;color:var(--ink-2)}
 .tile .tile-price{margin-top:18px;font-size:26px;font-weight:700;letter-spacing:-.02em;color:inherit}
 @media(max-width:860px){.tiles,.tiles.two{grid-template-columns:1fr}}
+
+/* бежевые плашки чередуют оттенки внутри ряда */
+.tiles>:nth-child(3n+2),.doors>:nth-child(3n+2),.price-cards>:nth-child(3n+2),.steps>:nth-child(3n+2),.addons>:nth-child(2n),.rev:nth-child(3n+2){background:var(--tile-2)}
+.tiles>:nth-child(3n),.doors>:nth-child(3n),.price-cards>:nth-child(3n),.steps>:nth-child(3n),.rev:nth-child(3n){background:var(--tile-3)}
+.tiles>.tile.hit{background:var(--ink)}
 
 /* шаги заказа: 1–5 */
 .steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
