@@ -14,8 +14,33 @@ const toast = t => { const el = $('#toast'); el.textContent = t; el.classList.ad
 const onScroll = () => document.documentElement.classList.toggle('collapsed', scrollY > 40);
 addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
+/* ---------- прелоадер ---------- */
+if (document.documentElement.classList.contains('show-loader')) {
+  const t0 = performance.now(), el = $('#loader');
+  const hide = () => setTimeout(() => {
+    el.classList.add('done');
+    setTimeout(() => document.documentElement.classList.remove('show-loader'), 650);
+  }, Math.max(0, 1300 - (performance.now() - t0)));
+  if (document.readyState === 'complete') hide(); else addEventListener('load', hide, { once: true });
+  setTimeout(() => el.classList.add('done'), 3500); // медленный интернет — не держим дольше
+}
+
+/* ---------- плавный уход со страницы там, где браузер не умеет сам ---------- */
+if (document.documentElement.classList.contains('no-vt')) {
+  addEventListener('click', e => {
+    const a = e.target.closest('a[href]');
+    if (!a || e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || a.target || a.hasAttribute('download')) return;
+    const u = new URL(a.href, location.href);
+    if (u.origin !== location.origin || (u.pathname === location.pathname && u.hash)) return;
+    e.preventDefault();
+    document.documentElement.classList.add('page-out');
+    setTimeout(() => { location.href = u.href; }, 260);
+  });
+  addEventListener('pageshow', e => { if (e.persisted) document.documentElement.classList.remove('page-out'); });
+}
+
 /* ---------- кнопки: мягкое увеличение при касании (наведение — в стилях) ---------- */
-const POP = '.btn,.link,.door,.pkg,.date:not([disabled]),.step,.mini-step button,.chips button,.book-tabs button,.book-arrow,.menu-btn,.design,.check,.seg label';
+const POP = '.nav a,.brand,.mnav li a,.foot li a,.btn,.link,.door,.pkg,.date:not([disabled]),.step,.mini-step button,.chips button,.book-tabs button,.book-arrow,.menu-btn,.design,.check,.seg label';
 addEventListener('pointerdown', e => {
   const el = e.target.closest(POP); if (!el) return;
   el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
@@ -33,21 +58,58 @@ menuBtn.onclick = () => setMenu(mnav.hidden);
 mnav.addEventListener('click', e => { if (e.target.closest('a,button')) setMenu(false); });
 addEventListener('keydown', e => { if (e.key === 'Escape' && !mnav.hidden) setMenu(false); });
 
-/* ---------- свободные даты ---------- */
+/* ---------- свободные даты: календарь от сегодняшнего дня ---------- */
 const WD = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
-const freeDates = () => CONFIG.dates.filter(d => d[1]);
+const MONTHS = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
+const isoOf = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+const TODAY = isoOf(new Date());
+const upcoming = () => CONFIG.dates.filter(([d]) => d >= TODAY).sort((a, b) => a[0] < b[0] ? -1 : 1);
+const freeDates = () => upcoming().filter(d => d[1]);
 const dateLabel = iso => { const d = new Date(iso + 'T12:00'); return d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' }) + ', ' + WD[d.getDay()]; };
+const dayMonth = iso => new Date(iso + 'T12:00').toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' });
+const cal = { y: new Date().getFullYear(), m: new Date().getMonth() };
 function renderDates() {
-  const free = freeDates().length;
-  $$('[data-dates-left]').forEach(el => el.textContent = free
-    ? `${free} ${plural(free, 'свободная дата', 'свободные даты', 'свободных дат')} на ${CONFIG.month}`
-    : `Все даты на ${CONFIG.month} заняты`);
-  const list = $('#datesList'); if (!list) return;
-  list.innerHTML = CONFIG.dates.map(([iso, ok]) => {
-    const d = new Date(iso + 'T12:00');
-    return `<button class="date" role="listitem" ${ok ? '' : 'disabled aria-label="занято"'} data-date="${iso}"><b>${d.getDate()}</b><span>${WD[d.getDay()]}${ok ? '' : ' · занято'}</span></button>`;
-  }).join('');
-  $$('.date:not([disabled])', list).forEach(b => b.onclick = () => openLead('Забронировать съёмку', { date: b.dataset.date }));
+  const free = freeDates(), n = free.length;
+  $$('[data-dates-left]').forEach(el => el.textContent = n
+    ? `свободно ${n} ${plural(n, 'дата', 'даты', 'дат')}, ближайшая — ${dayMonth(free[0][0])}.`
+    : 'свободные даты скоро появятся — оставьте заявку, предложим удобный день.');
+  const near = $('#nearDates');
+  if (near) near.innerHTML = free.slice(0, 6).map(([iso]) => `<button class="date" data-date="${iso}"><b>${new Date(iso + 'T12:00').getDate()}</b><span>${dateLabel(iso).replace(/^\d+ /, '')}</span></button>`).join('')
+    || '<p class="muted">Свободных дат пока нет.</p>';
+  renderCal();
+}
+function renderCal() {
+  const box = $('#cal'); if (!box) return;
+  const map = Object.fromEntries(CONFIG.dates);
+  const first = new Date(cal.y, cal.m, 1), shift = (first.getDay() + 6) % 7, days = new Date(cal.y, cal.m + 1, 0).getDate();
+  const now = new Date(), atStart = cal.y === now.getFullYear() && cal.m === now.getMonth();
+  const last = CONFIG.dates.reduce((m, [d]) => d > m ? d : m, TODAY);
+  const atEnd = isoOf(new Date(cal.y, cal.m + 1, 1)) > last;
+  let cells = '<span></span>'.repeat(shift);
+  for (let d = 1; d <= days; d++) {
+    const iso = isoOf(new Date(cal.y, cal.m, d)), st = map[iso], past = iso < TODAY;
+    const cls = ['cal-day', past && 'past', iso === TODAY && 'today', !past && st === true && 'free', !past && st === false && 'busy'].filter(Boolean).join(' ');
+    cells += !past && st === true
+      ? `<button class="${cls}" data-date="${iso}" aria-label="${dateLabel(iso)} — свободно">${d}</button>`
+      : `<span class="${cls}"${!past && st === false ? ' title="занято"' : ''}>${d}</span>`;
+  }
+  box.innerHTML = `<div class="cal-head">
+      <button class="cal-arrow" data-cal="-1" aria-label="Предыдущий месяц" ${atStart ? 'disabled' : ''}>‹</button>
+      <p>${MONTHS[cal.m]} ${cal.y}</p>
+      <button class="cal-arrow" data-cal="1" aria-label="Следующий месяц" ${atEnd ? 'disabled' : ''}>›</button>
+    </div>
+    <div class="cal-grid">${['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'].map(w => `<b>${w}</b>`).join('')}${cells}</div>`;
+}
+function bindDates() {
+  document.addEventListener('click', e => {
+    const a = e.target.closest('[data-cal]');
+    if (a && !a.disabled) { cal.m += +a.dataset.cal; if (cal.m < 0) { cal.m = 11; cal.y--; } if (cal.m > 11) { cal.m = 0; cal.y++; } renderCal(); return; }
+    const d = e.target.closest('[data-date]');
+    if (d) openLead('Забронировать съёмку', { date: d.dataset.date });
+  });
+  renderDates();
+  // настоящие даты из Битрикс24 (или другого источника), когда Денис подключит адрес
+  if (CONFIG.datesUrl) fetch(CONFIG.datesUrl).then(r => r.json()).then(list => { if (Array.isArray(list)) { CONFIG.dates = list; renderDates(); } }).catch(() => {});
 }
 
 /* ---------- калькулятор (на странице категории, категория уже выбрана) ---------- */
@@ -401,4 +463,4 @@ $$('dialog.sheet').forEach(d => d.addEventListener('click', e => {
   if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) d.close();
 }));
 
-renderDates(); renderPrices(); renderDesigns(); bindCalc(); bindLead(); bindBook(); bindGallery(); bindLb(); renderReviews(); renderBlog(); renderFaq();
+bindDates(); renderPrices(); renderDesigns(); bindCalc(); bindLead(); bindBook(); bindGallery(); bindLb(); renderReviews(); renderBlog(); renderFaq();

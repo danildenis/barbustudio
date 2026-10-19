@@ -3,19 +3,34 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+/* прелоадер — только при первом заходе на сайт или при обновлении главной;
+   плавные переходы между страницами — встроенные в браузер, если он их умеет, иначе свои */
+(function(d){try{var s=sessionStorage,first=!s.getItem('bs-in'),n=performance.getEntriesByType('navigation')[0];
+if(first||(n&&n.type==='reload'&&d.hasAttribute('data-home')))d.classList.add('show-loader');s.setItem('bs-in','1')}catch(e){}
+if(!('onpagereveal' in window))d.classList.add('no-vt')})(document.documentElement);
+</script>
 <title>Свободные даты — Barbustudio</title>
-<meta name="description" content="Свободные даты весенних выпускных съёмок Barbustudio в Перми.">
+<meta name="description" content="Свободные даты выпускных съёмок Barbustudio в Перми.">
 <meta property="og:title" content="Свободные даты — Barbustudio">
-<meta property="og:description" content="Свободные даты весенних выпускных съёмок Barbustudio в Перми.">
+<meta property="og:description" content="Свободные даты выпускных съёмок Barbustudio в Перми.">
 <meta property="og:image" content="../img/sad-01.jpg">
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="../img/logo-full.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../style.css?v=56">
+<link rel="stylesheet" href="../style.css?v=57">
 </head>
 <body data-root="../" data-kind="">
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-in">
+    <img src="../img/logo-full.png" alt="" width="104" height="99">
+    <p class="loader-name">Barbustudio</p>
+    <p class="loader-sub">выпускные фотокниги · Пермь</p>
+    <span class="loader-bar"><i></i></span>
+  </div>
+</div>
 
 <header class="head" id="head">
   <nav class="nav nav-l" aria-label="Альбомы">
@@ -51,16 +66,18 @@
     <div class="wrap">
       <div class="sec-head">
         <h1 class="h1">Свободные даты</h1>
-        <p class="lead">Весенние съёмки: <b data-dates-left>…</b>. Нажмите на свободную дату, чтобы оставить заявку. Дату закрепляем за группой после договора и аванса 5&nbsp;000&nbsp;₽.</p>
+        <p class="lead">Ближайшие съёмки: <b data-dates-left>…</b> Нажмите на свободную дату, чтобы оставить заявку. Дату закрепляем после договора и аванса 5&nbsp;000&nbsp;₽.</p>
       </div>
-      <div class="dates-list" id="datesList" role="list"></div>
+      <div class="near" id="nearDates"></div>
+      <div class="cal" id="cal"></div>
+      <ul class="cal-legend"><li><i class="l-free"></i>свободно</li><li><i class="l-busy"></i>занято</li><li><i class="l-today"></i>сегодня</li></ul>
     </div>
   </section>
   <hr class="stripe">
   <section class="sec cta">
     <div class="wrap">
       <h2 class="h2">Забронируйте дату съёмки</h2>
-      <p class="lead">Весенние съёмки: <b data-dates-left>…</b>. Дату закрепляем после договора и аванса 5&nbsp;000&nbsp;₽.</p>
+      <p class="lead">Ближайшие съёмки: <b data-dates-left>…</b> Дату закрепляем после договора и аванса 5&nbsp;000&nbsp;₽.</p>
       <div class="actions">
         <button class="btn btn-primary" data-lead="Забронировать съёмку">Оставить заявку</button>
         <a class="link" href="../daty/">Все свободные даты</a>
@@ -152,9 +169,9 @@
 
 <div class="toast" id="toast" role="status"></div>
 
-<script src="../gallery.js?v=56"></script>
-<script src="../reviews.js?v=56"></script>
-<script src="../data.js?v=56"></script>
-<script src="../app.js?v=56"></script>
+<script src="../gallery.js?v=57"></script>
+<script src="../reviews.js?v=57"></script>
+<script src="../data.js?v=57"></script>
+<script src="../app.js?v=57"></script>
 </body>
 </html>

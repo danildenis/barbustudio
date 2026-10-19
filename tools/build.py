@@ -10,7 +10,7 @@
 """
 from pathlib import Path
 
-VERSION = 56
+VERSION = 57
 ROOT_DIR = Path(__file__).resolve().parent.parent
 PHONE, PHONE_TEL = '+7 (965) 55-88-008', '+79655588508'
 
@@ -40,10 +40,17 @@ def layout(path, title, desc, body, kind=''):
     full_title = f'{title} — Barbustudio' if path else 'Barbustudio — выпускные фотокниги в Перми'
     kind_cls = f' class="kind-{kind}"' if kind else ''
     return f'''<!doctype html>
-<html lang="ru">
+<html lang="ru"{' data-home' if not path else ''}>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+/* прелоадер — только при первом заходе на сайт или при обновлении главной;
+   плавные переходы между страницами — встроенные в браузер, если он их умеет, иначе свои */
+(function(d){{try{{var s=sessionStorage,first=!s.getItem('bs-in'),n=performance.getEntriesByType('navigation')[0];
+if(first||(n&&n.type==='reload'&&d.hasAttribute('data-home')))d.classList.add('show-loader');s.setItem('bs-in','1')}}catch(e){{}}
+if(!('onpagereveal' in window))d.classList.add('no-vt')}})(document.documentElement);
+</script>
 <title>{full_title}</title>
 <meta name="description" content="{desc}">
 <meta property="og:title" content="{full_title}">
@@ -57,6 +64,14 @@ def layout(path, title, desc, body, kind=''):
 <link rel="stylesheet" href="{root}style.css?v={VERSION}">
 </head>
 <body data-root="{root}" data-kind="{kind}"{kind_cls}>
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-in">
+    <img src="{root}img/logo-full.png" alt="" width="104" height="99">
+    <p class="loader-name">Barbustudio</p>
+    <p class="loader-sub">выпускные фотокниги · Пермь</p>
+    <span class="loader-bar"><i></i></span>
+  </div>
+</div>
 
 <header class="head" id="head">
   <nav class="nav nav-l" aria-label="Альбомы">
@@ -199,7 +214,7 @@ PROMOS = '''<div class="tiles two">
 
 
 def cta(root, title='Забронируйте дату съёмки', text=None):
-    text = text or 'Весенние съёмки: <b data-dates-left>…</b>. Дату закрепляем после договора и аванса 5&nbsp;000&nbsp;₽.'
+    text = text or 'Ближайшие съёмки: <b data-dates-left>…</b> Дату закрепляем после договора и аванса 5&nbsp;000&nbsp;₽.'
     return f'''  <section class="sec cta">
     <div class="wrap">
       <h2 class="h2">{title}</h2>
@@ -506,8 +521,10 @@ PAGES = {
     'sad/index.html': kind_page('sad'),
     'nachalnaya/index.html': kind_page('nach'),
     'starshaya/index.html': kind_page('star'),
-    'daty/index.html': simple('daty/', 'Свободные даты', 'Весенние съёмки: <b data-dates-left>…</b>. Нажмите на свободную дату, чтобы оставить заявку. Дату закрепляем за группой после договора и аванса 5&nbsp;000&nbsp;₽.',
-        '      <div class="dates-list" id="datesList" role="list"></div>', 'Свободные даты весенних выпускных съёмок Barbustudio в Перми.'),
+    'daty/index.html': simple('daty/', 'Свободные даты', 'Ближайшие съёмки: <b data-dates-left>…</b> Нажмите на свободную дату, чтобы оставить заявку. Дату закрепляем после договора и аванса 5&nbsp;000&nbsp;₽.',
+        '''      <div class="near" id="nearDates"></div>
+      <div class="cal" id="cal"></div>
+      <ul class="cal-legend"><li><i class="l-free"></i>свободно</li><li><i class="l-busy"></i>занято</li><li><i class="l-today"></i>сегодня</li></ul>''', 'Свободные даты выпускных съёмок Barbustudio в Перми.'),
     'polistat/index.html': simple('polistat/', 'Полистайте готовые альбомы', 'Настоящие выпускные альбомы 9 классов — разворот за разворотом.',
         '''      <div class="book-tabs" id="bookTabs" role="tablist"></div>
       <div class="book-stage">

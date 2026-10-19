@@ -3,6 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+/* прелоадер — только при первом заходе на сайт или при обновлении главной;
+   плавные переходы между страницами — встроенные в браузер, если он их умеет, иначе свои */
+(function(d){try{var s=sessionStorage,first=!s.getItem('bs-in'),n=performance.getEntriesByType('navigation')[0];
+if(first||(n&&n.type==='reload'&&d.hasAttribute('data-home')))d.classList.add('show-loader');s.setItem('bs-in','1')}catch(e){}
+if(!('onpagereveal' in window))d.classList.add('no-vt')})(document.documentElement);
+</script>
 <title>Контакты — Barbustudio</title>
 <meta name="description" content="Контакты фотостудии Barbustudio в Перми: телефон, почта, ВКонтакте, MAX.">
 <meta property="og:title" content="Контакты — Barbustudio">
@@ -13,9 +20,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../style.css?v=56">
+<link rel="stylesheet" href="../style.css?v=57">
 </head>
 <body data-root="../" data-kind="">
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-in">
+    <img src="../img/logo-full.png" alt="" width="104" height="99">
+    <p class="loader-name">Barbustudio</p>
+    <p class="loader-sub">выпускные фотокниги · Пермь</p>
+    <span class="loader-bar"><i></i></span>
+  </div>
+</div>
 
 <header class="head" id="head">
   <nav class="nav nav-l" aria-label="Альбомы">
@@ -70,7 +85,7 @@
   <section class="sec cta">
     <div class="wrap">
       <h2 class="h2">Забронируйте дату съёмки</h2>
-      <p class="lead">Весенние съёмки: <b data-dates-left>…</b>. Дату закрепляем после договора и аванса 5&nbsp;000&nbsp;₽.</p>
+      <p class="lead">Ближайшие съёмки: <b data-dates-left>…</b> Дату закрепляем после договора и аванса 5&nbsp;000&nbsp;₽.</p>
       <div class="actions">
         <button class="btn btn-primary" data-lead="Забронировать съёмку">Оставить заявку</button>
         <a class="link" href="../daty/">Все свободные даты</a>
@@ -162,9 +177,9 @@
 
 <div class="toast" id="toast" role="status"></div>
 
-<script src="../gallery.js?v=56"></script>
-<script src="../reviews.js?v=56"></script>
-<script src="../data.js?v=56"></script>
-<script src="../app.js?v=56"></script>
+<script src="../gallery.js?v=57"></script>
+<script src="../reviews.js?v=57"></script>
+<script src="../data.js?v=57"></script>
+<script src="../app.js?v=57"></script>
 </body>
 </html>
