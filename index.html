@@ -8,57 +8,54 @@
 <meta property="og:title" content="Barbus Studio — выпускные фотокниги в Перми">
 <meta property="og:description" content="Посчитайте альбом на весь класс и полистайте готовые фотокниги.">
 <meta property="og:image" content="img/nach-10.jpg">
-<meta name="theme-color" content="#F4EFE7">
+<meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="img/logo-full.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=48">
+<link rel="stylesheet" href="style.css?v=53">
 </head>
 <body>
 
 <header class="head" id="head">
-  <a class="brand" href="#top" aria-label="Barbus Studio — наверх">
-    <span class="brand-mark"><img src="img/logo-full.png" alt="" width="57" height="54"></span>
-    <span><b>Barbus Studio</b><small>выпускные альбомы · Пермь</small></span>
-  </a>
-  <nav class="nav" aria-label="Разделы">
+  <nav class="nav nav-l" aria-label="Разделы">
     <a href="#calc">Калькулятор</a>
     <a href="#book">Полистать</a>
     <a href="#prices">Альбомы</a>
     <a href="#designs">Дизайны</a>
+  </nav>
+  <a class="brand" href="#top" aria-label="Barbus Studio — наверх"><img class="brand-logo" src="img/logo-full.png" alt="" width="55" height="52"><span><b>Barbus Studio</b><small>выпускные альбомы · Пермь</small></span></a>
+  <nav class="nav nav-r" aria-label="Разделы, продолжение">
     <a href="#path">Как заказать</a>
     <a href="#gallery">Фото</a>
     <a href="#reviews">Отзывы</a>
     <a href="#faq">Вопросы</a>
   </nav>
-  <a class="head-phone" href="tel:+79655588508">+7 (965) 55-88-008</a>
-  <button class="btn btn-ink btn-sm" data-lead="Забронировать съёмку">Забронировать</button>
-  <button class="menu-btn" id="menuBtn" aria-controls="mnav" aria-expanded="false"><span class="menu-ico" aria-hidden="true"><i></i><i></i></span>Меню</button>
 </header>
+<!-- при прокрутке шапка прячется в эту иконку -->
+<button class="menu-btn" id="menuBtn" aria-controls="mnav" aria-expanded="false" aria-label="Все разделы"><span class="menu-ico" aria-hidden="true"><i></i><i></i><i></i></span></button>
 
 <!-- Меню для телефона и планшета -->
 <nav class="mnav" id="mnav" aria-label="Разделы сайта" hidden>
   <div class="mnav-top">
-    <img src="img/t/nach-10.jpg" alt="" width="56" height="70">
     <p>Barbus Studio<br><span>Пермь · фотокниги с 2014 года</span></p>
   </div>
   <ol>
-    <li><a href="#dates"><sup>01</sup>Свободные даты<i>↗</i></a></li>
-    <li><a href="#calc"><sup>02</sup>Калькулятор<i>↗</i></a></li>
-    <li><a href="#book"><sup>03</sup>Полистать альбом<i>↗</i></a></li>
-    <li><a href="#prices"><sup>04</sup>Альбомы и цены<i>↗</i></a></li>
-    <li><a href="#designs"><sup>05</sup>Дизайны<i>↗</i></a></li>
-    <li><a href="#path"><sup>06</sup>Как заказать<i>↗</i></a></li>
-    <li><a href="#gallery"><sup>07</sup>Фото<i>↗</i></a></li>
-    <li><a href="#reviews"><sup>08</sup>Отзывы<i>↗</i></a></li>
-    <li><a href="#blog"><sup>09</sup>Блог<i>↗</i></a></li>
-    <li><a href="#faq"><sup>10</sup>Вопросы<i>↗</i></a></li>
-    <li><a href="#contacts"><sup>11</sup>Контакты<i>↗</i></a></li>
+    <li><a href="#dates">Свободные даты</a></li>
+    <li><a href="#calc">Калькулятор</a></li>
+    <li><a href="#book">Полистать альбом</a></li>
+    <li><a href="#prices">Альбомы и цены</a></li>
+    <li><a href="#designs">Дизайны</a></li>
+    <li><a href="#path">Как заказать</a></li>
+    <li><a href="#gallery">Фото</a></li>
+    <li><a href="#reviews">Отзывы</a></li>
+    <li><a href="#blog">Блог</a></li>
+    <li><a href="#faq">Вопросы</a></li>
+    <li><a href="#contacts">Контакты</a></li>
   </ol>
   <div class="mnav-foot">
     <a class="mnav-phone num" href="tel:+79655588508">+7 (965) 55-88-008</a>
-    <button class="btn btn-coral" data-lead="Забронировать съёмку">Забронировать съёмку</button>
+    <button class="link-u" data-lead="Забронировать съёмку">Забронировать съёмку</button>
   </div>
 </nav>
 
@@ -77,11 +74,11 @@
   <!-- ГЛАВНЫЙ ЭКРАН: фото на весь экран, огромный заголовок поверх -->
   <section class="hero-cover" aria-label="Barbus Studio — выпускные фотокниги">
     <img class="hero-cover-img" src="img/nach-10.jpg" alt="Выпускница в школьной библиотеке — портрет с фотосессии" fetchpriority="high">
-    <p class="hero-cover-corner tl"><span class="pill">Barbus Studio</span></p>
-    <p class="hero-cover-corner tr">Фотокниги<br>с 2014 года</p>
     <h1 class="hero-cover-title">Выпускной</h1>
-    <p class="hero-cover-corner bl">Детский сад · начальная · старшая школа</p>
-    <p class="hero-cover-corner br">Пермь <span class="num">2027</span></p>
+    <div class="hero-cover-info">
+      <p>Детский сад · Начальная школа · Старшая школа</p>
+      <p>Фотокниги с 2014 года · Пермь <span class="num">2027</span></p>
+    </div>
   </section>
 
   <!-- РЕДАКЦИОННЫЙ БЛОК -->
@@ -100,8 +97,8 @@
     <div class="intro-body">
       <p>Фотокнига — это страницы истории жизни, перелистывая которые окунаешься в мир воспоминаний о самых важных моментах. Снимаем, верстаем и печатаем на настоящей фотобумаге — химической «мокрой» печатью, которая не выцветает годами.</p>
       <div class="hero-cta">
-        <a class="btn btn-ink" href="#calc">Посчитать на класс</a>
-        <button class="btn btn-line" data-lead="Забронировать съёмку">Забронировать съёмку</button>
+        <a class="link-u" href="#calc">Посчитать на класс</a>
+        <button class="link-u" data-lead="Забронировать съёмку">Забронировать съёмку</button>
       </div>
     </div>
     <dl class="stats">
@@ -291,11 +288,11 @@
       <p class="path-total"><span>Весь путь</span>около 2 месяцев</p>
     </div>
     <ol class="steps">
-      <li><span class="n">01</span><h3>Договор</h3><p>Выбираете альбом, фиксируем сроки, цену, скидки и бонусы. Аванс 5 000 ₽ закрепляет дату.</p><small>в день обращения</small></li>
-      <li><span class="n">02</span><h3>Съёмка</h3><p>Фотограф находит контакт с каждым ребёнком. Кто пропустил — бесплатная досъёмка.</p><small>в выбранную дату</small></li>
-      <li><span class="n">03</span><h3>Макет на проверку</h3><p>Обработка — до 3 недель, вёрстка — до 3 недель. Вы проверяете макеты, мы вносим правки.</p><small>до 6 недель</small></li>
-      <li><span class="n">04</span><h3>Печать</h3><p>Печатаем только после вашего утверждения. Остаток оплаты — при отправке в печать.</p><small>после утверждения</small></li>
-      <li><span class="n">05</span><h3>Выдача</h3><p>Привозим готовые альбомы. Проверьте их сразу: брак по вине печати или доставки переделаем.</p><small>≈ 2 месяца от съёмки</small></li>
+      <li><span class="n">1</span><h3>Договор</h3><p>Выбираете альбом, фиксируем сроки, цену, скидки и бонусы. Аванс 5 000 ₽ закрепляет дату.</p><small>в день обращения</small></li>
+      <li><span class="n">2</span><h3>Съёмка</h3><p>Фотограф находит контакт с каждым ребёнком. Кто пропустил — бесплатная досъёмка.</p><small>в выбранную дату</small></li>
+      <li><span class="n">3</span><h3>Макет на проверку</h3><p>Обработка — до 3 недель, вёрстка — до 3 недель. Вы проверяете макеты, мы вносим правки.</p><small>до 6 недель</small></li>
+      <li><span class="n">4</span><h3>Печать</h3><p>Печатаем только после вашего утверждения. Остаток оплаты — при отправке в печать.</p><small>после утверждения</small></li>
+      <li><span class="n">5</span><h3>Выдача</h3><p>Привозим готовые альбомы. Проверьте их сразу: брак по вине печати или доставки переделаем.</p><small>≈ 2 месяца от съёмки</small></li>
     </ol>
     <div class="path-terms">
       <p class="path-terms-k">Условия</p>
@@ -365,6 +362,10 @@
 </main>
 
 <footer class="foot">
+  <div class="foot-main">
+    <a class="foot-phone num" href="tel:+79655588508">+7 (965) 55-88-008</a>
+    <button class="link-u" data-lead="Забронировать съёмку">Забронировать съёмку</button>
+  </div>
   <div>
     <b>ИП Барбус Е.А.</b> · ИНН 590419040034 · ОГРНИП 324595800108375
   </div>

@@ -100,7 +100,8 @@ const toast = t => { const el = $('#toast'); el.textContent = t; el.classList.ad
 
 /* ---------- шапка и нижняя панель ---------- */
 const onScroll = () => {
-  $('#head').classList.toggle('scrolled', scrollY > 8);
+  // прокрутили — названия и разделы уходят в иконку справа
+  document.documentElement.classList.toggle('collapsed', scrollY > 40);
   $('#dock').classList.toggle('show', scrollY > innerHeight * .7);
 };
 addEventListener('scroll', onScroll, { passive: true }); onScroll();
@@ -113,12 +114,11 @@ const menuBtn = $('#menuBtn'), mnav = $('#mnav');
 const setMenu = open => {
   mnav.hidden = !open; menuBtn.setAttribute('aria-expanded', open);
   document.body.classList.toggle('menu-open', open);
-  menuBtn.lastChild.textContent = open ? 'Закрыть' : 'Меню';
+  menuBtn.setAttribute('aria-label', open ? 'Закрыть разделы' : 'Все разделы');
 };
 menuBtn.onclick = () => setMenu(mnav.hidden);
 mnav.addEventListener('click', e => { if (e.target.closest('a,button')) setMenu(false); });
 addEventListener('keydown', e => { if (e.key === 'Escape' && !mnav.hidden) setMenu(false); });
-addEventListener('resize', () => { if (innerWidth > 1200 && !mnav.hidden) setMenu(false); });
 // подсветка раздела, в котором сейчас находимся
 const navLinks = $$('#mnav a[href^="#"]');
 const spy = new IntersectionObserver(es => es.forEach(e => {
