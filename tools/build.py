@@ -10,7 +10,7 @@
 """
 from pathlib import Path
 
-VERSION = 58
+VERSION = 59
 ROOT_DIR = Path(__file__).resolve().parent.parent
 PHONE, PHONE_TEL = '+7 (965) 55-88-008', '+79655588508'
 

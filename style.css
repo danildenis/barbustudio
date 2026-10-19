@@ -3,8 +3,8 @@
    тёплый объектив (жёлтый, оранжево-красный). Белый фон, много воздуха, один смысловой блок на экран. */
 :root{
   --ink:#16203A; --ink-2:#4A5368; --ink-3:#727A8C; --line:#E3E7EE;
-  /* плашки: тёплые бежевые оттенки, чередуются, чтобы блоки не были одного цвета */
-  --tile:#F5EEE3; --tile-2:#EFE5D6; --tile-3:#F3E9DA; --tile-line:#E3D6C3; --bg:#FFFFFF;
+  /* плашки: первоначальный светлый цвет, тонкая рамка оставлена, чтобы их было видно на белом */
+  --tile:#F5F7FA; --tile-line:#DFE4EC; --bg:#FFFFFF;
   --navy:#16203A; --turq:#129399; --teal:#0F5B6B; --aqua:#98DFD9; --amber:#FCBA40; --coral:#F2563D; --red:#C8202F;
   /* акцент страницы: --accent для полос и заливок, --accent-ink для текста и кнопок (читаемый на белом) */
   --accent:var(--turq); --accent-2:var(--amber); --accent-ink:var(--teal); --tint:#EAF6F5;
@@ -75,9 +75,9 @@ p{margin:0}
 .nav-l{grid-column:1;justify-self:start}
 .nav-r{grid-column:3;justify-self:end}
 .nav a{position:relative;display:inline-block;padding:6px 0;text-decoration:none;color:var(--ink-2);white-space:nowrap;transition:opacity .35s,transform .55s var(--ease),color .5s var(--ease)}
-/* полоска под словом: при наведении плавно поднимается снизу и проявляется */
-.nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px;background:var(--stripe);opacity:0;transform:translateY(6px) scaleX(.6);transition:opacity .5s var(--ease),transform .6s cubic-bezier(.22,.61,.36,1)}
-.nav a:hover::after,.nav a[aria-current=page]::after{opacity:1;transform:none}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px;background:var(--stripe);transform:scaleX(0);transform-origin:right center;transition:transform .55s cubic-bezier(.22,.61,.36,1)}
+/* при наведении полоска выезжает слева направо, при уходе курсора уезжает дальше вправо */
+.nav a:hover::after,.nav a[aria-current=page]::after{transform:scaleX(1);transform-origin:left center}
 .nav a:hover,.nav a[aria-current=page]{color:var(--ink)}
 /* прокрутили — пункты уезжают вправо к иконке и гаснут */
 .collapsed .head{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .4s .25s,visibility 0s .65s}
@@ -158,10 +158,6 @@ main{padding-top:var(--head)}
 .tile .tile-price{margin-top:18px;font-size:26px;font-weight:700;letter-spacing:-.02em;color:inherit}
 @media(max-width:860px){.tiles,.tiles.two{grid-template-columns:1fr}}
 
-/* бежевые плашки чередуют оттенки внутри ряда */
-.tiles>:nth-child(3n+2),.doors>:nth-child(3n+2),.price-cards>:nth-child(3n+2),.steps>:nth-child(3n+2),.addons>:nth-child(2n),.rev:nth-child(3n+2){background:var(--tile-2)}
-.tiles>:nth-child(3n),.doors>:nth-child(3n),.price-cards>:nth-child(3n),.steps>:nth-child(3n),.rev:nth-child(3n){background:var(--tile-3)}
-.tiles>.tile.hit{background:var(--ink)}
 
 /* шаги заказа: 1–5 */
 .steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
