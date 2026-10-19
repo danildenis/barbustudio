@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Блог — Barbustudio</title>
+<meta name="description" content="Новости фотостудии Barbustudio.">
+<meta property="og:title" content="Блог — Barbustudio">
+<meta property="og:description" content="Новости фотостудии Barbustudio.">
+<meta property="og:image" content="../img/sad-01.jpg">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="../img/logo-full.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css?v=56">
+</head>
+<body data-root="../" data-kind="">
+
+<header class="head" id="head">
+  <nav class="nav nav-l" aria-label="Альбомы">
+    <a href="../sad/">Детский сад</a>
+    <a href="../nachalnaya/">Начальная школа</a>
+    <a href="../starshaya/">Старшая школа</a>
+    <a href="../polistat/">Полистать</a>
+  </nav>
+  <a class="brand" href="../" aria-label="Barbustudio — на главную"><img src="../img/logo-full.png" alt="" width="46" height="44"><span><b>Barbustudio</b><small>выпускные альбомы · Пермь</small></span></a>
+  <nav class="nav nav-r" aria-label="Заказ">
+    <a href="../kak-zakazat/">Как заказать</a>
+    <a href="../otzyvy/">Отзывы</a>
+    <a href="../voprosy/">Вопросы</a>
+    <a href="../kontakty/">Контакты</a>
+  </nav>
+</header>
+<!-- при прокрутке шапка прячется в эту иконку -->
+<button class="menu-btn" id="menuBtn" aria-controls="mnav" aria-expanded="false" aria-label="Все разделы"><span class="menu-ico" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<nav class="mnav" id="mnav" aria-label="Все разделы" hidden>
+  <div class="mnav-in">
+    <div><h2>Альбомы</h2><ul><li><a href="../">Главная</a></li><li><a href="../sad/">Детский сад</a></li><li><a href="../nachalnaya/">Начальная школа</a></li><li><a href="../starshaya/">Старшая школа</a></li><li><a href="../polistat/">Полистать альбом</a></li></ul></div>
+    <div><h2>Заказ</h2><ul><li><a href="../daty/">Свободные даты</a></li><li><a href="../kak-zakazat/">Как заказать</a></li><li><a href="../voprosy/">Вопросы</a></li><li><a href="../kontakty/">Контакты</a></li></ul></div>
+    <div><h2>Студия</h2><ul><li><a href="../foto/">Фото</a></li><li><a href="../otzyvy/">Отзывы</a></li><li><a href="../blog/" aria-current=page>Блог</a></li></ul></div>
+  </div>
+  <div class="mnav-foot">
+    <a class="num" href="tel:+79655588508">+7 (965) 55-88-008</a>
+    <button class="link" data-lead="Забронировать съёмку">Забронировать съёмку</button>
+  </div>
+</nav>
+
+<main>
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <h1 class="h1">Блог</h1>
+        <p class="lead">Новости студии.</p>
+      </div>
+      <div class="blog-grid" id="blogGrid"></div>
+    </div>
+  </section>
+  <hr class="stripe">
+  <section class="sec cta">
+    <div class="wrap">
+      <h2 class="h2">Забронируйте дату съёмки</h2>
+      <p class="lead">Весенние съёмки: <b data-dates-left>…</b>. Дату закрепляем после договора и аванса 5&nbsp;000&nbsp;₽.</p>
+      <div class="actions">
+        <button class="btn btn-primary" data-lead="Забронировать съёмку">Оставить заявку</button>
+        <a class="link" href="../daty/">Все свободные даты</a>
+        <a class="link" href="tel:+79655588508">+7 (965) 55-88-008</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="../"><img src="../img/logo-full.png" alt="" width="46" height="44"><span><b>Barbustudio</b><small>выпускные альбомы · Пермь</small></span></a>
+        <a class="foot-phone num" href="tel:+79655588508">+7 (965) 55-88-008</a>
+        <button class="link" data-lead="Забронировать съёмку">Забронировать съёмку</button>
+      </div>
+      <div><h2>Альбомы</h2><ul><li><a href="../">Главная</a></li><li><a href="../sad/">Детский сад</a></li><li><a href="../nachalnaya/">Начальная школа</a></li><li><a href="../starshaya/">Старшая школа</a></li><li><a href="../polistat/">Полистать альбом</a></li></ul></div>
+      <div><h2>Заказ</h2><ul><li><a href="../daty/">Свободные даты</a></li><li><a href="../kak-zakazat/">Как заказать</a></li><li><a href="../voprosy/">Вопросы</a></li><li><a href="../kontakty/">Контакты</a></li></ul></div>
+      <div><h2>Студия</h2><ul><li><a href="../foto/">Фото</a></li><li><a href="../otzyvy/">Отзывы</a></li><li><a href="../blog/">Блог</a></li></ul></div>
+    </div>
+    <div class="foot-legal">
+      <p><b>ИП Барбус Е.А.</b> · ИНН 590419040034 · ОГРНИП 324595800108375</p>
+      <p><a href="https://barbusbook.ru/politika-obrabotki-dannyh" target="_blank" rel="noopener">Политика обработки персональных данных</a> · <a href="https://barbusbook.ru/oferta" target="_blank" rel="noopener">Оферта</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ЗАЯВКА -->
+<dialog class="sheet" id="leadDlg" aria-labelledby="leadTitle">
+  <form method="dialog" class="sheet-x"><button aria-label="Закрыть">×</button></form>
+  <form id="leadForm" class="lead-form" novalidate>
+    <h2 id="leadTitle">Забронировать съёмку</h2>
+    <p class="muted">Пара полей — и заявка у нас. Ответим и согласуем детали.</p>
+    <div class="lead-calc" id="leadCalc" hidden></div>
+    <label>Имя<input name="name" autocomplete="given-name" required></label>
+    <label>Телефон<input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7" required></label>
+    <div class="pair">
+      <label>Сад или школа, группа/класс<input name="place" placeholder="Школа № 3, 4 «Б»"></label>
+      <label>Детей<input name="kids" type="number" min="1" max="60" inputmode="numeric"></label>
+    </div>
+    <div class="pair">
+      <label>Альбом<select name="pkg"><option value="">Ещё не выбрали</option></select></label>
+      <label>Дата съёмки<select name="date"><option value="">Обсудим</option></select></label>
+    </div>
+    <label class="agree"><input type="checkbox" name="agree" required> <span>Согласен(на) на обработку персональных данных по <a href="https://barbusbook.ru/politika-obrabotki-dannyh" target="_blank" rel="noopener">политике</a></span></label>
+    <p class="err" id="leadErr" hidden></p>
+    <button class="btn btn-primary wide" type="submit">Отправить заявку</button>
+  </form>
+  <div class="lead-done" id="leadDone" hidden>
+    <p class="done-mark">✓</p>
+    <h2>Заявка отправлена</h2>
+    <p class="muted">Скоро свяжемся с вами, чтобы обсудить детали и закрепить дату.</p>
+    <button class="btn btn-ghost" id="leadDoneShare" hidden>Отправить расчёт родителям</button>
+  </div>
+</dialog>
+
+<!-- ПОДЕЛИТЬСЯ -->
+<dialog class="sheet" id="shareDlg" aria-labelledby="shareTitle">
+  <form method="dialog" class="sheet-x"><button aria-label="Закрыть">×</button></form>
+  <h2 id="shareTitle">Отправить родителям</h2>
+  <p class="muted">Готовое сообщение с вариантами и ценами. Можно поправить перед отправкой.</p>
+  <textarea id="shareText" rows="10"></textarea>
+  <div class="share-btns">
+    <a class="btn btn-primary" id="shTg" target="_blank" rel="noopener">Telegram</a>
+    <a class="btn btn-primary" id="shWa" target="_blank" rel="noopener">WhatsApp</a>
+    <a class="btn btn-primary" id="shVk" target="_blank" rel="noopener">ВКонтакте</a>
+    <button class="btn btn-ghost" id="shCopy">Скопировать</button>
+    <button class="btn btn-ghost" id="shNative" hidden>Ещё…</button>
+  </div>
+</dialog>
+
+<!-- ЗАПИСЬ БЛОГА -->
+<dialog class="sheet" id="postDlg" aria-labelledby="postTitle">
+  <form method="dialog" class="sheet-x"><button aria-label="Закрыть">×</button></form>
+  <img id="postImg" alt="">
+  <h2 id="postTitle"></h2>
+  <div id="postBody"></div>
+</dialog>
+
+<!-- ПРОСМОТР ФОТО -->
+<dialog class="lb" id="lb" aria-label="Просмотр фото">
+  <button class="lb-x" id="lbX" aria-label="Закрыть">×</button>
+  <button class="lb-nav prev" id="lbPrev" aria-label="Предыдущее">‹</button>
+  <img id="lbImg" alt="">
+  <button class="lb-nav next" id="lbNext" aria-label="Следующее">›</button>
+  <p class="lb-n" id="lbN"></p>
+</dialog>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script src="../gallery.js?v=56"></script>
+<script src="../reviews.js?v=56"></script>
+<script src="../data.js?v=56"></script>
+<script src="../app.js?v=56"></script>
+</body>
+</html>
