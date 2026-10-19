@@ -109,6 +109,14 @@ addEventListener('scroll', onScroll, { passive: true }); onScroll();
 const setHead = () => document.documentElement.style.setProperty('--head', $('#head').offsetHeight + 'px');
 addEventListener('resize', setHead); setHead();
 
+/* ---------- пульс кнопок при касании (на компьютере — при наведении, это в стилях) ---------- */
+const POP = '.btn,.link-u,.seg label,.pkg,.date:not([disabled]),.step,.mini-step button,.chips button,.book-tabs button,.book-arrow,.menu-btn,.design,.more-btn,.dock a,.check';
+addEventListener('pointerdown', e => {
+  const el = e.target.closest(POP); if (!el) return;
+  el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
+}, { passive: true });
+addEventListener('animationend', e => { if (e.animationName === 'pop') e.target.classList.remove('pop'); });
+
 /* ---------- меню (телефон, планшет) ---------- */
 const menuBtn = $('#menuBtn'), mnav = $('#mnav');
 const setMenu = open => {

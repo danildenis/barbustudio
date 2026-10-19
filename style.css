@@ -85,8 +85,8 @@ main{padding-top:0}
 .hero-cover-info p{margin:0}
 .hero-cover-info .num{letter-spacing:.18em}
 .pill{display:inline-block;padding:4px 14px;border-radius:99px;border:1px solid currentColor;font:italic 400 .95em/1.2 var(--serif);letter-spacing:0;text-transform:none}
-@keyframes coverIn{from{transform:scale(1.08);filter:brightness(.7)}}
-@keyframes titleIn{from{opacity:0;letter-spacing:.06em}}
+@keyframes coverIn{from{transform:scale(1.08);opacity:.55}}
+@keyframes titleIn{from{opacity:0;transform:translateY(-44%)}}
 
 /* редакционный блок под обложкой */
 .intro{position:relative;display:grid;grid-template-columns:minmax(80px,1fr) 3fr;column-gap:clamp(20px,4vw,56px);row-gap:28px;padding-top:clamp(48px,7vw,88px)}
@@ -161,16 +161,17 @@ main{padding-top:0}
 @media(max-width:420px){.dates-list{grid-template-columns:repeat(4,1fr);gap:8px}.date b{font-size:20px}}
 
 /* калькулятор */
-.calc-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(20px,3vw,40px);align-items:start}
+.calc-grid{border:1px solid rgba(22,32,58,.2);border-radius:var(--r);padding:clamp(18px,3vw,40px);display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(20px,3vw,40px);align-items:start}
 .calc-form{display:grid;gap:28px}
 fieldset{border:0;margin:0;padding:0;min-width:0}
 legend{display:flex;justify-content:space-between;width:100%;padding:0;margin-bottom:12px;font-weight:600;font-size:15px}
 legend output{font:600 22px/1 var(--sans);color:var(--coral)}
-.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:5px;border-radius:4px;background:var(--paper-2)}
-.seg label{position:relative}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.seg label{position:relative;display:block}
 .seg input{position:absolute;opacity:0}
-.seg span{display:block;padding:12px 6px;border-radius:4px;text-align:center;font-size:14px;font-weight:500;cursor:pointer;transition:background .2s}
-.seg input:checked+span{background:var(--card);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.seg span{display:block;padding:12px 6px;border-radius:4px;border:1px solid rgba(22,32,58,.22);background:var(--card);text-align:center;font-size:14px;font-weight:500;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.seg span:hover{border-color:var(--ink)}
+.seg input:checked+span{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
 .seg input:focus-visible+span{outline:2px solid var(--coral)}
 .pkgs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .pkg{position:relative;display:block;padding:16px;border-radius:4px;border:1.5px solid var(--line);background:var(--card);cursor:pointer;transition:border-color .2s}
@@ -193,7 +194,7 @@ input[type=range]{flex:1;accent-color:var(--coral);height:28px}
 .mini-step output{min-width:16px;text-align:center;font-weight:600}
 .check{cursor:pointer}
 .check input{position:absolute;opacity:0}
-.check i{flex:none;position:relative;width:48px;height:28px;border-radius:4px;background:var(--paper-2);border:1px solid var(--line);transition:background .2s}
+.check i{flex:none;position:relative;width:48px;height:28px;border-radius:4px;background:var(--paper-2);border:1px solid rgba(22,32,58,.25);transition:background .2s}
 .check i::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:2px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .2s}
 .check input:checked+i{background:var(--teal)}
 .check input:checked+i::after{transform:translateX(20px)}
@@ -467,6 +468,13 @@ dialog::backdrop{background:rgba(20,17,14,.55);backdrop-filter:blur(3px)}
 .toast{position:fixed;left:50%;bottom:90px;z-index:60;transform:translate(-50%,20px);padding:12px 20px;border-radius:4px;background:var(--ink);color:var(--paper);font-size:14px;opacity:0;pointer-events:none;transition:.25s}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
+/* кнопки: при наведении или касании слегка увеличиваются и возвращаются на место */
+@keyframes pop{0%{scale:1}38%{scale:var(--pop,1.06)}100%{scale:1}}
+.pkg,.date,.design,.post-card button,.masonry button,.rev{--pop:1.03}
+.pop{animation:pop .42s cubic-bezier(.3,1.5,.5,1)}
+@media(hover:hover){
+  .btn:hover,.link-u:hover,.seg label:hover,.pkg:hover,.date:not([disabled]):hover,.step:hover,.mini-step button:hover,.chips button:hover,.book-tabs button:hover,.book-arrow:hover,.menu-btn:hover,.design:hover,.more-btn:hover,.dock a:hover{animation:pop .42s cubic-bezier(.3,1.5,.5,1)}
+}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
 
 /* Раздел — ровно на экран (компьютер): переход из меню показывает раздел целиком под шапкой */
@@ -594,7 +602,7 @@ dialog::backdrop{background:rgba(20,17,14,.55);backdrop-filter:blur(3px)}
 @media(max-width:1200px){.menu-btn{opacity:1;transform:none;pointer-events:auto;top:max(8px,calc((var(--head) - 48px)/2))}}
 .mnav{position:fixed;inset:0;z-index:21;padding-top:76px!important;display:flex;flex-direction:column;gap:18px;padding:18px var(--gut) calc(18px + env(safe-area-inset-bottom));background:var(--paper);color:var(--ink);overflow:auto;border-top:1px solid var(--line);animation:mnavIn .35s cubic-bezier(.2,.7,.2,1)}
 .mnav[hidden]{display:none}
-@keyframes mnavIn{from{opacity:0;clip-path:inset(0 0 100% 0)}to{opacity:1;clip-path:inset(0 0 0 0)}}
+@keyframes mnavIn{from{opacity:0;transform:translateY(-12px)}}
 .mnav-top{display:flex;align-items:center;gap:14px;padding-bottom:14px;border-bottom:1px solid var(--line)}
 .mnav-top img{width:44px;height:56px;object-fit:cover;object-position:50% 25%;border-radius:2px}
 .mnav-top p{margin:0;font:400 20px/1.2 var(--serif)}
@@ -603,10 +611,10 @@ dialog::backdrop{background:rgba(20,17,14,.55);backdrop-filter:blur(3px)}
 .mnav li{border-bottom:1px solid var(--line);opacity:0;transform:translateY(14px);animation:mItem .5s cubic-bezier(.2,.7,.2,1) forwards}
 .mnav li:nth-child(1){animation-delay:.04s}.mnav li:nth-child(2){animation-delay:.07s}.mnav li:nth-child(3){animation-delay:.1s}.mnav li:nth-child(4){animation-delay:.13s}.mnav li:nth-child(5){animation-delay:.16s}.mnav li:nth-child(6){animation-delay:.19s}.mnav li:nth-child(7){animation-delay:.22s}.mnav li:nth-child(8){animation-delay:.25s}.mnav li:nth-child(9){animation-delay:.28s}.mnav li:nth-child(10){animation-delay:.31s}.mnav li:nth-child(11){animation-delay:.34s}
 @keyframes mItem{to{opacity:1;transform:none}}
-.mnav a:not(.btn):not(.mnav-phone){display:flex;align-items:baseline;gap:10px;padding:10px 0 8px;text-decoration:none;color:inherit;font:400 clamp(22px,6.6vw,34px)/1.05 var(--serif);text-transform:uppercase;letter-spacing:-.01em;transition:color .2s,padding .25s}
+.mnav a:not(.btn):not(.mnav-phone){display:flex;align-items:baseline;gap:10px;padding:10px 0 8px;text-decoration:none;color:inherit;font:400 clamp(22px,6.6vw,34px)/1.05 var(--serif);text-transform:uppercase;letter-spacing:-.01em;transition:color .2s,transform .3s cubic-bezier(.2,.7,.2,1)}
 .mnav sup{display:none}
 .mnav a i{margin-left:auto;font-style:normal;font-size:.6em;color:var(--ink-2);opacity:.6;transition:transform .25s,opacity .2s}
-.mnav a:hover,.mnav a:active{padding-left:6px}
+.mnav a:hover,.mnav a:active{transform:translateX(6px)}
 .mnav a:hover i{transform:translate(3px,-3px);opacity:1}
 .mnav a.is-current:not(.btn){color:var(--teal)}
 .mnav a.is-current i{color:var(--teal);opacity:1}
